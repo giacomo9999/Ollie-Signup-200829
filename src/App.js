@@ -1,13 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
+import SignupForm from "./SignupForm";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container-outer">
-        <h1>APP</h1>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="container-outer">
+      <SignupForm />
+    </div>
+  );
 }
 
 export default App;
