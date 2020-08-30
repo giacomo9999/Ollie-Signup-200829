@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class SignupForm extends Component {
   state = {
-    id: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -18,9 +17,9 @@ class SignupForm extends Component {
   addNewUser = (e) => {
     e.preventDefault();
     const newUser = {
-      id: new Date(),
       email: this.state.email,
       password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
       petName: this.state.petName,
       petWeight: this.state.petWeight,
       petIdealWeight: this.state.petIdealWeight,
