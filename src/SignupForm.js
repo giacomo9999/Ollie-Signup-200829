@@ -38,21 +38,15 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div className="container-outer">
-        <div className="container-inner">
+      <div className="grid-container">
+        <div className="grid-item">
           <img
-            className="signup-form-image"
             src="https://via.placeholder.com/600"
-            alt="Grey Box With Dimensions"
-          />
-          <img
-            className="signup-form-image"
-            src="https://via.placeholder.com/600"
-            alt="Grey Box With Dimensions"
+            alt="Grey box with dimensions"
           />
         </div>
 
-        {/* <div className="container-inner">
+        <div className="grid-item">
           <form className="h-form" onSubmit={this.addNewUser}>
             <label className="h-label">E-Mail</label>
             <input
@@ -104,9 +98,9 @@ class SignupForm extends Component {
             />
 
             <br />
-            <button>Submit</button>
+            <button className="h-btn">Submit</button>
           </form>
-        </div> */}
+        </div>
       </div>
     );
   }

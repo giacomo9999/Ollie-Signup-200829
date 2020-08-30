@@ -3,8 +3,6 @@ code {
     monospace;
 }
 
-
-
 /* Organizational */
 * {
   padding: 0;
@@ -43,70 +41,18 @@ h4 {
   color: black;
 }
 
-.container-outer {
+.grid-container {
+  display: grid;
+  justify-content: start;
+  grid-template-columns: 50% 50%;
+  grid-gap: 10px;
   max-width: 1200px;
-  padding: 10px;
-  margin: 20px auto 10px;
-  /* background color 5 */
+  margin: 20px auto 20px;
   background-color: #6c7a89;
-  border-radius: 5px;
 }
 
-.container-inner {
-  display: inline-block;
-  width: 45%;
-  /* margin: 10px auto 5px;
-  background-color: #3c4a59;
-  padding: 10px;
-  border-radius: 5px; */
-}
-
-
-
-/* Lists: */
-
-ul {
-  width: 80%;
-  border-radius: 5px;
-  /* background color 11 */
-  background-color: #c5d3e2;
-  padding: 10px;
-  margin: 10px auto;
-  list-style: none;
-}
-
-li {
-  font-size: 1.2em;
-  font-weight: 600;
-  text-align: center;
-  margin: 5px;
-  /* color 0 */
-  color: #1c2a39;
-}
-
-/* Tables: */
-
-table {
-  table-layout: fixed;
-  width: 75%;
-  background-color: white;
-  padding: 10px;
-  margin: 10px auto 20px;
-}
-
-tr {
-  text-align: center;
-  font-weight: 400;
-  color: black;
-}
-
-th {
-  font-weight: 500;
-  text-align: left;
-}
-
-td {
-  text-align: left;
+.grid-item {
+  width: 95%;
 }
 
 /* Button (General Use) */
@@ -128,21 +74,20 @@ button {
 .h-form {
   width: 85%;
   margin: 25px auto;
-  
 }
 
 .h-form .h-label {
+  color: white;
+  text-align: left;
   display: block;
-  padding: 7px;
-  /* box-sizing: border-box; */
-  /* background color 8 */
-  background-color: #9caab9;
+  padding: 10px 0 5px 0;
 }
 
 .h-form .h-input {
   display: block;
   width: 100%;
   box-sizing: border-box;
+  text-align: left;
   height: 30px;
   padding: 15px;
   font-size: 14px;
@@ -154,7 +99,7 @@ button {
   color: white;
   display: block;
   margin: 15px auto;
-  
+
   padding: 4px 10px;
   font-size: 14px;
   font-family: "Oswald", sans-serif;
