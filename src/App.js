@@ -3,7 +3,7 @@ import SignupForm from "./SignupForm";
 
 function App() {
   return (
-    <div className="container-outer">
+    <div>
       <SignupForm />
     </div>
   );

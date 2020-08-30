@@ -38,61 +38,75 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <div className="container-inner">
-        <h2>Register For Ollie</h2>
-        <form className="h-form" onSubmit={this.addNewUser}>
-          <label className="h-label">E-Mail</label>
-          <input
-            className="h-input"
-            type="text"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputUpdate}
+      <div className="container-outer">
+        <div className="container-inner">
+          <img
+            className="signup-form-image"
+            src="https://via.placeholder.com/600"
+            alt="Grey Box With Dimensions"
           />
-          <label className="h-label">Password</label>
-          <input
-            className="h-input"
-            type="text"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInputUpdate}
+          <img
+            className="signup-form-image"
+            src="https://via.placeholder.com/600"
+            alt="Grey Box With Dimensions"
           />
-          <label className="h-label">Confirm Password</label>
-          <input
-            className="h-input"
-            type="text"
-            name="confirmPassword"
-            value={this.state.confirmPassword}
-            onChange={this.handleInputUpdate}
-          />
-          <label className="h-label">Pet Name</label>
-          <input
-            className="h-input"
-            type="text"
-            name="petName"
-            value={this.state.petName}
-            onChange={this.handleInputUpdate}
-          />
-          <label className="h-label">Pet Weight</label>
-          <input
-            className="h-input"
-            type="text"
-            name="petWeight"
-            value={this.state.petWeight}
-            onChange={this.handleInputUpdate}
-          />
-          <label className="h-label">Pet Ideal Weight</label>
-          <input
-            className="h-input"
-            type="text"
-            name="petIdealWeight"
-            value={this.state.petIdealWeight}
-            onChange={this.handleInputUpdate}
-          />
+        </div>
 
-          <br />
-          <button>Submit</button>
-        </form>
+        {/* <div className="container-inner">
+          <form className="h-form" onSubmit={this.addNewUser}>
+            <label className="h-label">E-Mail</label>
+            <input
+              className="h-input"
+              type="text"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleInputUpdate}
+            />
+            <label className="h-label">Password</label>
+            <input
+              className="h-input"
+              type="text"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleInputUpdate}
+            />
+            <label className="h-label">Confirm Password</label>
+            <input
+              className="h-input"
+              type="text"
+              name="confirmPassword"
+              value={this.state.confirmPassword}
+              onChange={this.handleInputUpdate}
+            />
+            <label className="h-label">Pet Name</label>
+            <input
+              className="h-input"
+              type="text"
+              name="petName"
+              value={this.state.petName}
+              onChange={this.handleInputUpdate}
+            />
+            <label className="h-label">Pet Weight</label>
+            <input
+              className="h-input"
+              type="text"
+              name="petWeight"
+              value={this.state.petWeight}
+              onChange={this.handleInputUpdate}
+            />
+            <label className="h-label">Pet Ideal Weight</label>
+            <input
+              className="h-input"
+              type="text"
+              name="petIdealWeight"
+              value={this.state.petIdealWeight}
+              onChange={this.handleInputUpdate}
+            />
+
+            <br />
+            <button>Submit</button>
+          </form>
+        </div> */}
       </div>
     );
   }
