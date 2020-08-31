@@ -22,16 +22,17 @@ class SignupForm extends Component {
 
   // Helper functions for validation
   validateEMail = (emailIn) => {
-    let atpos = emailIn.indexOf("@");
-    let dotpos = emailIn.lastIndexOf(".");
-    if (atpos < 1 || dotpos - atpos < 2) {
-      return false;
-    }
-    return true;
+    let strongRegex = new RegExp(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+    return strongRegex.test(emailIn);
   };
 
   validatePassword = (password) => {
-    return true;
+    let strongRegex = new RegExp(
+      /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+    );
+    return strongRegex.test(password);
   };
 
   validatePasswordMatch = (passwordIn, confPasswordIn) => {
@@ -49,22 +50,27 @@ class SignupForm extends Component {
   // Validate user information
   validateUser = (userIn) => {
     const userOut = {
-      email: userIn.email,
-      emailIsValid: this.validateEMail(userIn.email),
-      password: userIn.password,
-      confirmPassword: userIn.confirmPassword,
-      passwordIsValid: this.validatePassword(userIn.password),
-      passwordsMatch: this.validatePasswordMatch(
-        userIn.password,
-        userIn.confirmPassword
-      ),
-      petName: userIn.petName,
-      petNameIsValid: this.validatePetName(userIn.petName),
-      petWeight: userIn.petWeight,
-      petWeightIsValid: this.validateWeight(userIn.petWeight),
-      petIdealWeight: userIn.petIdealWeight,
-      petIdealWeightIsValid: this.validateWeight(userIn.petIdealWeight),
+      allFieldsValid: false,
+      data: {
+        email: userIn.email,
+        emailIsValid: this.validateEMail(userIn.email),
+        password: userIn.password,
+        confirmPassword: userIn.confirmPassword,
+        passwordIsValid: this.validatePassword(userIn.password),
+        passwordsMatch: this.validatePasswordMatch(
+          userIn.password,
+          userIn.confirmPassword
+        ),
+        petName: userIn.petName,
+        petNameIsValid: this.validatePetName(userIn.petName),
+        petWeight: userIn.petWeight,
+        petWeightIsValid: this.validateWeight(userIn.petWeight),
+        petIdealWeight: userIn.petIdealWeight,
+        petIdealWeightIsValid: this.validateWeight(userIn.petIdealWeight),
+      },
     };
+
+    return userOut;
   };
 
   addNewUser = (e) => {
@@ -78,23 +84,10 @@ class SignupForm extends Component {
       petIdealWeight: this.state.petIdealWeight,
     };
 
-    console.log("User validated...", this.validateUser(newUser));
-    // If all fields are valid, make POST request to server
-    console.log(newUser);
-
-    this.setState({
-      email: "",
-      emailIsValid: true,
-      password: "",
-      confirmPassword: "",
-      passwordIsValid: true,
-      petName: "",
-      petNameIsValid: true,
-      petWeight: 0,
-      petWeightIsValid: true,
-      petIdealWeight: 0,
-      petIdealWeightIsValid: true,
-    });
+    const checkedUser = this.validateUser(newUser);
+    // If (checkedUser.allFieldsValid), make POST request to server
+    console.log(checkedUser);
+    this.setState(checkedUser.data);
   };
 
   render() {
