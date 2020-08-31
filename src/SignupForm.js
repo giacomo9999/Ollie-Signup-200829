@@ -141,8 +141,22 @@ class SignupForm extends Component {
       .then((response) => {
         console.log("Reponse object: ", response);
       })
-      .then((err) => {
-        console.log("Error:", err);
+      .catch((err) => {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          console.log(
+            "Server sent back error response (4xx or 5xx)...",
+            err.response,
+            err.response.data,
+            err.response.data.message
+          );
+        } else if (err.request) {
+          // client never received a response, or request never left
+          console.log("No response received.");
+        } else {
+          // anything else
+          console.log("Some other error occurred. ");
+        }
       });
   };
 
