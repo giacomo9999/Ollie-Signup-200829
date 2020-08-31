@@ -36,6 +36,12 @@ h4 {
   margin: 5px;
 }
 
+.validation-error {
+  color: #FFAC9C;
+  font-size: 1em;
+  margin: 0;
+}
+
 .dark {
   /* color 0 */
   color: black;

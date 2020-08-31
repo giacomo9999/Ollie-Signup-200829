@@ -3,15 +3,56 @@ import React, { Component } from "react";
 class SignupForm extends Component {
   state = {
     email: "",
+    emailIsValid: true,
     password: "",
     confirmPassword: "",
+    passwordIsValid: true,
     petName: "",
+    petNameIsValid: true,
     petWeight: 0,
+    petWeightIsValid: true,
     petIdealWeight: 0,
+    petIdealWeightIsValid: true,
   };
 
   handleInputUpdate = (e) => {
     this.setState({ [e.target.name]: e.target.value });
+  };
+
+  // Helper functions for validation
+  validateEMail = (emailIn) => {
+    let atpos = emailIn.indexOf("@");
+    let dotpos = emailIn.lastIndexOf(".");
+    if (atpos < 1 || dotpos - atpos < 2) {
+      return false;
+    }
+    return true;
+  };
+
+  validatePassword = (passwordIn, confPasswordIn) => {};
+
+  validatePetName = (petNameIn) => {};
+
+  validateWeight = (weightIn) => {};
+
+  // Validate user information
+  validateUser = (userIn) => {
+    const userOut = {
+      email: userIn.email,
+      emailIsValid: this.validateEMail(userIn.email),
+      password: userIn.password,
+      confirmPassword: userIn.confirmPassword,
+      passwordIsValid: this.validatePassword(
+        userIn.password,
+        userIn.confirmPassword
+      ),
+      petName: userIn.petName,
+      petNameIsValid: this.validatepetName(userIn.petName),
+      petWeight: userIn.petWeight,
+      petWeightIsValid: this.validateWeight(userIn.petWeight),
+      petIdealWeight: userIn.petIdealWeight,
+      petIdealWeightIsValid: this.validateWeight(userIn.petIdealWeight),
+    };
   };
 
   addNewUser = (e) => {
@@ -24,14 +65,23 @@ class SignupForm extends Component {
       petWeight: this.state.petWeight,
       petIdealWeight: this.state.petIdealWeight,
     };
+
+    console.log("User validated...", this.validateUser(newUser));
+    // If all fields are valid, make POST request to server
     console.log(newUser);
+
     this.setState({
-      id: "",
       email: "",
+      emailIsValid: true,
       password: "",
+      confirmPassword: "",
+      passwordIsValid: true,
       petName: "",
+      petNameIsValid: true,
       petWeight: 0,
+      petWeightIsValid: true,
       petIdealWeight: 0,
+      petIdealWeightIsValid: true,
     });
   };
 
@@ -55,6 +105,7 @@ class SignupForm extends Component {
               value={this.state.email}
               onChange={this.handleInputUpdate}
             />
+            <h4 className="validation-error">Invalid e-mail address</h4>
             <label className="h-label">Password</label>
             <input
               className="h-input"
