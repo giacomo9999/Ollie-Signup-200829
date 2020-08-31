@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class SignupForm extends Component {
   state = {
@@ -95,9 +96,8 @@ class SignupForm extends Component {
     };
 
     const checkedUser = this.validateUser(newUser);
-    // If (checkedUser.allFieldsValid), make POST request to server
-    console.log(checkedUser);
     this.setState(checkedUser.data);
+    // If (checkedUser.allFieldsValid), make POST request to server
     if (checkedUser.allFieldsValid) {
       this.setState({
         email: "",
@@ -113,7 +113,37 @@ class SignupForm extends Component {
         petIdealWeight: 0,
         petIdealWeightIsValid: true,
       });
+
+      this.submitUserData(checkedUser);
     }
+  };
+
+  submitUserData = (userData) => {
+    const dataObject = JSON.stringify({
+      email: userData.data.email,
+      password: userData.data.password,
+      petName: userData.data.petName,
+      petWeight: userData.data.petWeight,
+      petIdealWeight: userData.data.petIdealWeight,
+    });
+    console.log("Submitting user data...", dataObject);
+
+    axios
+      .post(
+        "https://32f2jzoot4.execute-api.us-east-1.amazonaws.com/default/fe-takehome-api",
+        dataObject,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        console.log("Reponse object: ", response);
+      })
+      .then((err) => {
+        console.log("Error:", err);
+      });
   };
 
   render() {
@@ -159,7 +189,7 @@ class SignupForm extends Component {
             <label className="h-label">Password</label>
             <input
               className="h-input"
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleInputUpdate}
@@ -168,7 +198,7 @@ class SignupForm extends Component {
             <label className="h-label">Confirm Password</label>
             <input
               className="h-input"
-              type="text"
+              type="password"
               name="confirmPassword"
               value={this.state.confirmPassword}
               onChange={this.handleInputUpdate}
