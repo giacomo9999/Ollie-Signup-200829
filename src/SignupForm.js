@@ -36,15 +36,16 @@ class SignupForm extends Component {
   };
 
   validatePasswordMatch = (passwordIn, confPasswordIn) => {
-    return true;
+    return passwordIn === confPasswordIn;
   };
 
   validatePetName = (petNameIn) => {
-    return true;
+    let strongRegex = new RegExp(/^[a-zA-Z0-9_.-]*$/);
+    return strongRegex.test(petNameIn);
   };
 
   validateWeight = (weightIn) => {
-    return true;
+    return weightIn >= 3 && weightIn <= 180;
   };
 
   // Validate user information
