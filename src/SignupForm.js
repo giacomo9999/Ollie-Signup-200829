@@ -70,7 +70,16 @@ class SignupForm extends Component {
         petIdealWeightIsValid: this.validateWeight(userIn.petIdealWeight),
       },
     };
-
+    if (
+      userOut.data.emailIsValid &&
+      userOut.data.passwordIsValid &&
+      userOut.data.passwordsMatch &&
+      userOut.data.petNameIsValid &&
+      userOut.data.petWeightIsValid &&
+      userOut.data.petIdealWeightIsValid
+    ) {
+      userOut.allFieldsValid = true;
+    }
     return userOut;
   };
 
@@ -89,6 +98,22 @@ class SignupForm extends Component {
     // If (checkedUser.allFieldsValid), make POST request to server
     console.log(checkedUser);
     this.setState(checkedUser.data);
+    if (checkedUser.allFieldsValid) {
+      this.setState({
+        email: "",
+        emailIsValid: true,
+        password: "",
+        passwordIsValid: true,
+        confirmPassword: "",
+        passwordsMatch: true,
+        petName: "",
+        petNameIsValid: true,
+        petWeight: 0,
+        petWeightIsValid: true,
+        petIdealWeight: 0,
+        petIdealWeightIsValid: true,
+      });
+    }
   };
 
   render() {
