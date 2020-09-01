@@ -54,7 +54,7 @@ test("Captures e-mail correctly onChange", () => {
   expect(component.state().email).toEqual("foo@bar.com");
 });
 
-test("Component state resets to initial (blank) state on submission of validated user data", () => {
+test("Component state resets to initial (blank) state on submission of successfully validated user data", () => {
   const component = mount(<SignupForm />);
   component.setState(validUserData);
   component.find("form").simulate("submit");
@@ -65,7 +65,7 @@ test("Component state resets to initial (blank) state on submission of validated
   expect(component.state().petIdealWeight).toEqual(0);
 });
 
-test("Displays error message message on submission of invalid user e-mail", () => {
+test("Displays error message on submission of invalid user e-mail", () => {
   const component = mount(<SignupForm />);
   component.setState(invalidUserData);
   component.find("form").simulate("submit");
