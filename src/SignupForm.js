@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class SignupForm extends Component {
-  state = {
+  initialState = {
     email: "",
     emailIsValid: true,
     password: "",
@@ -16,6 +16,8 @@ class SignupForm extends Component {
     petIdealWeight: 0,
     petIdealWeightIsValid: true,
   };
+
+  state = this.initialState;
 
   handleInputUpdate = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -99,21 +101,7 @@ class SignupForm extends Component {
     this.setState(checkedUser.data);
     // If (checkedUser.allFieldsValid), make POST request to server
     if (checkedUser.allFieldsValid) {
-      this.setState({
-        email: "",
-        emailIsValid: true,
-        password: "",
-        passwordIsValid: true,
-        confirmPassword: "",
-        passwordsMatch: true,
-        petName: "",
-        petNameIsValid: true,
-        petWeight: 0,
-        petWeightIsValid: true,
-        petIdealWeight: 0,
-        petIdealWeightIsValid: true,
-      });
-
+      this.setState(this.initialState);
       this.submitUserData(checkedUser);
     }
   };
@@ -195,7 +183,7 @@ class SignupForm extends Component {
               value={this.state.email}
               onChange={this.handleInputUpdate}
             />
-            <h4 className="validation-error">{invalidEmailMsg}</h4>
+            <h4 className="validation-error" data-test='invalid-email'>{invalidEmailMsg}</h4>
             <label className="h-label">Password</label>
             <input
               className="h-input"
