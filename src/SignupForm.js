@@ -126,7 +126,6 @@ class SignupForm extends Component {
       petWeight: userData.data.petWeight,
       petIdealWeight: userData.data.petIdealWeight,
     });
-    console.log("Submitting user data...", dataObject);
 
     axios
       .post(
@@ -139,23 +138,20 @@ class SignupForm extends Component {
         }
       )
       .then((response) => {
-        console.log("Reponse object: ", response);
+        alert("User registered successfully.");
       })
       .catch((err) => {
         if (err.response) {
           // client received an error response (5xx, 4xx)
-          console.log(
-            "Server sent back error response (4xx or 5xx)...",
-            err.response,
-            err.response.data,
-            err.response.data.message
-          );
+          const alertMessage =
+            err.response.data.message || "Unspecified server error";
+          alert(alertMessage);
         } else if (err.request) {
           // client never received a response, or request never left
-          console.log("No response received.");
+          alert("No response from server.");
         } else {
           // anything else
-          console.log("Some other error occurred. ");
+          alert("An error occurred. ");
         }
       });
   };
