@@ -3,7 +3,7 @@ import SignupForm from "./SignupForm";
 
 function App() {
   return (
-    <div>
+    <div data-test="component-app">
       <SignupForm />
     </div>
   );
