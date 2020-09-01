@@ -177,7 +177,7 @@ class SignupForm extends Component {
       : "Weight must be between 3 and 180 lbs";
 
     return (
-      <div className="grid-container">
+      <div className="grid-container" data-test="component-signup-form">
         <div className="grid-item">
           <img
             src="https://via.placeholder.com/600"
